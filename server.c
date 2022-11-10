@@ -7,6 +7,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include "datatypes.h"
 
 
 struct sockaddr_in get_socket_addr_in(size_t port) {

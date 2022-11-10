@@ -3,7 +3,7 @@
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <unistd.h>
-
+#include "datatypes.h"
 
 #define MSGLEN 1024
 
@@ -39,14 +39,15 @@ int main(int argc, char *argv[]) {
 
 
 
-
     char msg[MSGLEN];
 
     recv(sfd, msg, MSGLEN, 0);
 
     printf("%s", msg);
 
+
     close(sfd);
+
 
     return 0;
 }
