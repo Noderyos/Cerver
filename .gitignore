@@ -1,4 +1,6 @@
 .vscode/*
 .vscode
+test
+test/*
 client
 server

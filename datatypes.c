@@ -1,6 +1,10 @@
 #include "datatypes.h"
 
 void writeVarInt(int fd, int value){
+    if(0 > value){
+        perror("Negative value");
+        return;
+    }
     while (1) {
         if ((value & ~SEGMENT_BITS) == 0) {
             send(fd,(const char*)&value,1,0);
@@ -16,6 +20,10 @@ void writeVarInt(int fd, int value){
 }
 
 void writeVarLong(int fd, long value){
+    if(0 > value){
+        perror("Negative value");
+        return;
+    }
     while (1) {
         if ((value & ~(long)SEGMENT_BITS) == 0) {
             send(fd,(const char*)&value,1,0);
@@ -29,6 +37,10 @@ void writeVarLong(int fd, long value){
 }
 
 void writeVarLongLong(int fd, long long value){
+    if(0 > value){
+        perror("Negative value");
+        return;
+    }
     while (1) {
         if ((value & ~(long long)SEGMENT_BITS) == 0) {
             send(fd,(const char*)&value,1,0);
@@ -54,8 +66,11 @@ int readVarInt(int fd){
 
         position += 7;
 
-        if (position >= 32)
+        if (position >= 32){
             perror("Var int too big");
+            return;
+        }
+            
     }
     return value;
 }
@@ -73,8 +88,10 @@ long readVarLong(int fd){
 
         position += 7;
 
-        if (position >= 32){}
+        if (position >= 64){
             perror("Var long too big");
+            return;
+        }
     }
     return value;
 }

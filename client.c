@@ -51,3 +51,7 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+/*
+char banner[255] = " ------------------------\n/         Cerver         \\\n|           by           |\n\\  Noderyos and Aintea   /\n ------------------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||";
+printf("%s",banner);
+*/
