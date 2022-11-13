@@ -5,7 +5,11 @@
 #include <unistd.h>
 #include "datatypes.h"
 
-#define MSGLEN 1024
+void displayHelpScreen(){
+    char* help = "List of commands : \nls - List files\nget - Retrieve a file\nquit - Exit program";
+    printf("%s\n",help);
+}
+
 
 struct sockaddr_in get_socket_addr_in(size_t port) {
     struct sockaddr_in si = { 0 };
@@ -24,9 +28,6 @@ int main(int argc, char *argv[]) {
 
     socklen_t c_size = sizeof(client);
 
-    // si.sin_family = AF_INET;
-    // si.sin_port = htons(1337);
-
 
     int sfd = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -39,12 +40,17 @@ int main(int argc, char *argv[]) {
 
 
 
-    char msg[MSGLEN];
+    char cmd[16] = {0};
+    while (strcmp(cmd,"quit") != 0) {
+        printf(">");
+        scanf("%15s",cmd);
 
-    recv(sfd, msg, MSGLEN, 0);
+        if (strcmp(cmd,"help") == 0){
+            displayHelpScreen();
+        }
 
-    printf("%s", msg);
-
+    }
+    
 
     close(sfd);
 
